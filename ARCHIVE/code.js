@@ -1,7 +1,7 @@
 const map = document.getElementById('map')
 const player = document.getElementById('player')
 
-let speed = 5 // player speed
+let speed = 20 // player speed
 let x = 0
 let y = 0
 
