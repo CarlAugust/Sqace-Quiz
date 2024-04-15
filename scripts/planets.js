@@ -8,8 +8,8 @@ c.translate(canvas.width/2,canvas.height/2);
 let a = 0;
 
 function globalNum(){
-    a += 0.0002
-    console.log(a)
+    a += 0.0001
+
     if (a > Math.PI * 20) {
         a -= Math.PI * 20
     }
@@ -29,6 +29,7 @@ function globalNum(){
 } */
 
 class planet {
+
     constructor(radius, factor, xPath, yPath) {
 
         this.radius = radius
@@ -37,7 +38,9 @@ class planet {
         this.yPath = yPath
     }
 
-    
+
+
+
 
 }
 
@@ -48,16 +51,18 @@ function createPlanet(obj) {
     let x = Math.cos(angle) * obj.xPath
     let y = Math.sin(angle) * obj.yPath
 
+    obj.xPos = x
+    obj.yPos = y
     c.beginPath()
     c.arc(x, y, obj.radius, Math.PI*2, false)
     c.fill()
     c.stroke();
-    console.log('drew ' + obj)
+
 }
 
 
 let blackHole = new planet(50, 1, 0, 0)
-let mercury = new planet(10, 1, 100, 100)
+let mercury = new planet(10, 1, 125, 100)
 
 function animate(){
     requestAnimationFrame(animate);
@@ -76,3 +81,9 @@ function animate(){
 }
 
 animate();
+
+canvas.addEventListener('click', (event) => {
+    // const Rect = canvas.getBoundingClientRect();
+    console.log(event.clientX + "    " + event.clientY)
+    console.log(mercury.xPos + '    ' + mercury.yPos)
+})
