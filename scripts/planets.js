@@ -36,6 +36,7 @@ class planet {
         this.factor = factor
         this.xPath = xPath
         this.yPath = yPath
+        
     }
 
 
@@ -63,6 +64,7 @@ function createPlanet(obj) {
 
 let blackHole = new planet(50, 1, 0, 0)
 let mercury = new planet(10, 1, 125, 100)
+let venus = new planet(10, 1.2, 185, 160)
 
 function animate(){
     requestAnimationFrame(animate);
@@ -77,6 +79,7 @@ function animate(){
     createPlanet(blackHole)
     c.fillStyle = '#ffffff';
     createPlanet(mercury)
+    createPlanet(venus)
 
 }
 
