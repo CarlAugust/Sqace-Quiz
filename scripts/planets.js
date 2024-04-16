@@ -2,8 +2,11 @@ const canvas = document.querySelector('canvas')
 
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
+
+const canvasHalfX = canvas.width/2
+const canvasHalfY = canvas.height/2
+
 c = canvas.getContext("2d")
-c.translate(canvas.width/2,canvas.height/2);
 
 let a = 0;
 
@@ -36,12 +39,10 @@ class planet {
         this.factor = factor
         this.xPath = xPath
         this.yPath = yPath
-        
+
     }
 
-
-
-
+    
 
 }
 
@@ -52,10 +53,10 @@ function createPlanet(obj) {
     let x = Math.cos(angle) * obj.xPath
     let y = Math.sin(angle) * obj.yPath
 
-    obj.xPos = x
-    obj.yPos = y
+    obj.xPos = Math.round(x + canvasHalfX)
+    obj.yPos = Math.round(y + canvasHalfY)
     c.beginPath()
-    c.arc(x, y, obj.radius, Math.PI*2, false)
+    c.arc(obj.xPos, obj.yPos, obj.radius, Math.PI*2, false)
     c.fill()
     c.stroke();
 
