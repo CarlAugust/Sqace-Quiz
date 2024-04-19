@@ -12,10 +12,13 @@ c = canvas.getContext("2d")
 
 let a = 0;
 
+// Variable for how fast the game runs
+let runSpeed = 0.0002
+
 
 // A global a variable which increments up to 20*PI
 function globalNum(){
-    a += 0.0002
+    a += runSpeed
 
     if (a > Math.PI * 8) {
         a -= Math.PI * 8
