@@ -6,20 +6,19 @@ body, html {
     overflow: hidden;
 }
 
-.space {
-    background-color: white;
-    position:absolute;
+.root {
+
+    display: none;
+    height:100%;
+    width:100%;
+    background-color: black;
+    padding-top:25px;
+    margin:auto;
+    color:white;
+
 }
 
-.blackhole {
-
-    border-style:solid;
-    border-radius: 50%;
-    color:white;
-    width:50px;
-    height:50px;
-    position:absolute;
-    top:50%;
-    left:50%
-
+.planetText {
+    
+    text-align: center;
 }

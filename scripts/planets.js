@@ -20,7 +20,6 @@ function globalNum(){
     if (a > Math.PI * 8) {
         a -= Math.PI * 8
     }
-
     console.log(a)
 }
 
@@ -30,18 +29,32 @@ let planets = [];
 
 class planet {
 
-    constructor(radius, speed, xPath, yPath, func) {
+    constructor(radius, speed, xPath, yPath, arr) {
 
         this.radius = radius
         this.speed = speed
         this.xPath = xPath
         this.yPath = yPath
-        this.func = func
+        this.arr = arr
 
         planets.push(this)
+    }
 
+    planetInfo() {
 
-
+        let root = document.querySelector('.root')
+    
+        let element = document.createElement('div')
+        let text = document.createElement('h1')
+        element.classList.add('planetText')
+        text.innerHTML = `${this.arr[0]}`
+        element.appendChild(text)
+        
+        root.appendChild(element);
+    
+        canvas.style.display = 'none';
+        root.style.display = 'block';
+        
     }
 
 
@@ -77,8 +90,14 @@ function drawPlanet(obj) {
 
 }
 
+// A function that takes a array, the array will specifically
+// contain specific information based on the index before inputed
+
+// planet functions
+
+
 // planets objects
-let blackHole = new planet(50, 1, 0, 0)
+let blackHole = new planet(50, 1, 0, 0, ['Hi this is origo'])
 let mercury = new planet(12, 1, 125, 100)
 let venus = new planet(18, 1.2, 185, 160)
 let earth = new planet(20, 1.5, 250, 225)
@@ -141,7 +160,7 @@ canvas.addEventListener('click', (event) => {
         let dist = dx*dx+dy*dy
 
         if (Math.abs(r * r) > dist) {
-            console.log(planets[val].speed)
+            planets[val].planetInfo()
         }
     }
 
