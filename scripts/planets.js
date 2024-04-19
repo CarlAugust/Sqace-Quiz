@@ -1,6 +1,7 @@
 
 
 const canvas = document.querySelector('canvas')
+let root = document.querySelector('.root')
 
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
@@ -13,7 +14,8 @@ c = canvas.getContext("2d")
 let a = 0;
 
 // Variable for how fast the game runs
-let runSpeed = 0.0002
+let originalSpeed = 0.00005
+let runSpeed = originalSpeed
 
 
 // A global a variable which increments up to 20*PI
@@ -23,7 +25,7 @@ function globalNum(){
     if (a > Math.PI * 8) {
         a -= Math.PI * 8
     }
-    console.log(a)
+
 }
 
 
@@ -32,32 +34,47 @@ let planets = [];
 
 class planet {
 
-    constructor(radius, speed, xPath, yPath, arr) {
+    constructor(radius, speed, xPath, yPath, name) {
 
         this.radius = radius
         this.speed = speed
         this.xPath = xPath
         this.yPath = yPath
-        this.arr = arr
+        this.name = name
 
         planets.push(this)
     }
 
     planetInfo() {
-
-        let root = document.querySelector('.root')
     
         let element = document.createElement('div')
+
+        // A header for the html in every planet
         let text = document.createElement('h1')
         element.classList.add('planetText')
-        text.innerHTML = `${this.arr[0]}`
+        text.innerHTML = `Hello this is ${this.name}`
         element.appendChild(text)
+
+        // A back button to return to the solar system
+        let back = document.createElement('button')
+        back.innerHTML = 'go back'
+        back.addEventListener('click', () => {
+
+            root.removeChild(element)
+            canvas.style.display = 'block'
+            root.style.display = 'none'
+            runSpeed = originalSpeed 
+        } )
+
+        element.appendChild(back)
         
         root.appendChild(element);
     
+        // Pauses the solar system, removes it from view and views the planets html
         canvas.style.display = 'none';
         root.style.display = 'block';
-        
+        runSpeed = 0;
+
     }
 
 
@@ -82,8 +99,8 @@ function drawPlanet(obj) {
     let y = Math.sin(angle) * obj.yPath
 
     // Changes the x and y based on the canvas length
-    obj.xPos = Math.round(x + canvasHalfX)
-    obj.yPos = Math.round(y + canvasHalfY)
+    obj.xPos = x + canvasHalfX
+    obj.yPos = y + canvasHalfY
 
     // Draws to canvas
     c.beginPath()
@@ -96,19 +113,18 @@ function drawPlanet(obj) {
 // A function that takes a array, the array will specifically
 // contain specific information based on the index before inputed
 
-// planet functions
 
 
 // planets objects
-let blackHole = new planet(50, 1, 0, 0, ['Hi this is origo'])
-let mercury = new planet(12, 1, 125, 100)
-let venus = new planet(18, 1.2, 185, 160)
-let earth = new planet(20, 1.5, 250, 225)
-let mars = new planet(14, 1.8, 300, 290)
-let jupiter = new planet(40, 2.5, 400, 400)
-let saturn = new planet(28, 3, 500, 480)
-let uranus = new planet(20, 3.4, 670, 680)
-let neptune = new planet(19, 4, 750, 740)
+let sun = new planet(50, 1, 0, 0, 'Sun')
+let mercury = new planet(12, 1, 125, 100, 'Mercury')
+let venus = new planet(18, 1.2, 185, 160, 'Venus')
+let earth = new planet(20, 1.5, 250, 225, 'Earth')
+let mars = new planet(14, 1.8, 300, 290, 'Mars')
+let jupiter = new planet(40, 2.5, 400, 400, 'Jupiter')
+let saturn = new planet(28, 3, 500, 480, 'Saturn')
+let uranus = new planet(20, 3.4, 620, 600, 'Uranus')
+let neptune = new planet(19, 4, 700, 690, 'Neptune')
 
 
 // The function that loops every aniation frame
