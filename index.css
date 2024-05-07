@@ -6,15 +6,23 @@ body, html {
     overflow: hidden;
 }
 
+div {
+    color:white;
+    background-color: black;
+}
+
+.answers {
+    position:fixed;
+    margin-left:20px;
+}
+
 .root {
 
     display: none;
     height:100%;
     width:100%;
-    background-color: black;
     padding-top:25px;
     margin:auto;
-    color:white;
 
 }
 
